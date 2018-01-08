@@ -1,0 +1,28 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "bamazon hw assignment",
+  "main": "customer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrecker13/bamazon.git"
+  },
+  "keywords": [
+    "bamazon",
+    "hw",
+    "assignment"
+  ],
+  "author": "Matt Recker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrecker13/bamazon/issues"
+  },
+  "homepage": "https://github.com/mrecker13/bamazon#readme",
+  "dependencies": {
+    "inquirer": "^4.0.2",
+    "mysql": "^2.15.0"
+  }
+}
