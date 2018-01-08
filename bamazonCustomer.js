@@ -58,6 +58,7 @@ function getQty (id, qty) {
         }
         else {
             console.log("Insufficient stock!");
+            startApp();
         }
     });
 };
