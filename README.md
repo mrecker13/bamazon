@@ -11,7 +11,7 @@ Bamazon has inventory that you can purchase using the node.js CLI.  You will fir
 * The first screen will ask you what id you would like to purchase, along with a reading of the current products in inventory.
 
 ![User input](/images/user-input.png)
-* After entering which id you would like to purchase, you will then be prompted how many you would like to purchase.
+* After entering which id you would like to purchase, you will then be prompted how many you would like to purchase.  If the qty entered is more than the current inventory of that product, you will be told there is insufficient inventory and asked if you would like to buy something else.
 
 ![Summary](/images/summary-confirm.png)
 * After finalizing your purchase, you will be given a summary of the purchase including total price.  You will then be asked if you want to buy something else.  Just confirm with a 'y' or 'n'.
