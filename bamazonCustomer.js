@@ -5,7 +5,7 @@ var connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: 'Cowboys26',
+    password: '',
     database: 'bamazon'
   });
    
@@ -17,7 +17,7 @@ var connection = mysql.createConnection({
 
   function readDB () {
       connection.query("SELECT * FROM products", function(err, res) {
-          if(err) throw(err);
+        if(err) throw(err);
         console.log("\n---------------------------------------------");
           for (var i = 0; i < res.length; i++) {
               console.log("id: " + res[i].item_id +
@@ -49,16 +49,25 @@ var connection = mysql.createConnection({
 function getQty (id, qty) {
     var idQty;
     var newQty;
-    connection.query("SELECT stock_quantity FROM products WHERE item_id = ?", [id], function(err, res) {
+    var price;
+    var totalPrice;
+    var product;
+    connection.query("SELECT * FROM products WHERE item_id = ?", [id], function(err, res) {
         if(err) throw (err);
         idQty = res[0].stock_quantity;
+        price = res[0].price;
+        product = res[0].product_name;
         if (qty <= idQty) {
             newQty = idQty - qty;
+            totalPrice = price * qty;
+            console.log("==================================================");
+            console.log("You just purchased " + qty + " " + product + " for a total of $" + totalPrice);
+            console.log("==================================================");
             updateQty(id, newQty);
         }
         else {
             console.log("Insufficient stock!");
-            startApp();
+            buyMore();
         }
     });
 };
@@ -66,7 +75,26 @@ function getQty (id, qty) {
 function updateQty (id, newQty) {
     connection.query("UPDATE products SET stock_quantity = ? WHERE item_id = ?", [newQty, id], function(err, res) {
         if (err) throw (err);
-        console.log("Updated!");
     })
-    startApp();
+    buyMore();
+}
+
+function buyMore () {
+    inquirer.prompt([
+        {
+            type: "confirm",
+            message: "Would you like to purchase more?",
+            name: "confirm"
+        }
+    ])
+    .then(function(input) {
+        if(input.confirm ===true) {
+            readDB();
+            startApp();
+        }
+        else {
+            console.log("Thank you!  Goodbye.")
+            connection.end();
+        }
+    })
 }
