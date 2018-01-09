@@ -2,8 +2,6 @@
 
 Bamazon has inventory that you can purchase using the node.js CLI.  You will first want to enter your sql password into the appropriate field in the bamazonCustomer.js file in order to connect to your DB.
 
-![Bamazon gif](/images/bamazon.mp4)
-
 ### How it works:
 
 ![Start the program](/images/initial.png)
